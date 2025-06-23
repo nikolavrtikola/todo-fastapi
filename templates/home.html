@@ -1,0 +1,52 @@
+{% include 'layout.html' %}
+
+<div class="container">
+    <h1>The Home Page</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Is Complete</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for todo in todos %}
+    {% if todo.complete == False %}
+    <tr class="pointer">
+            <td>{{loop.index}}</td>
+            <td>{{todo.title}}</td>
+            <td>{{todo.priority}}</td>
+            {% if todo.complete == False %}
+            <td>Nezavrseno</td>
+            {% endif %}
+            <td>
+                <button onclick="window.location.href='complete/{{todo.id}}'" type="button" class="btn btn-success">Complete</button>
+                <button onclick="window.location.href='edit-todo/{{todo.id}}'" class="btn btn-info">Edit</button>
+                <a href="/todos/add-todo" class="btn btn-success">Add new ToDo</a>
+            </td>
+       
+    </tr>
+    {% else %}
+    <tr class="pointer">
+        <td>{{loop.index}}</td>
+        <td class="strike-through-td">{{todo.title}}</td>
+        <td class="strike-through-td">{{todo.priority}}</td>
+        {% if todo.complete == True %}
+        <td class="strike-through-td">Zavrseno</td>
+        {% endif %}
+        <td>
+            <button onclick="window.location.href='complete/{{todo.id}}'" button" class="btn btn-success">Undo</button>
+            <button onclick="window.location.href='edit-todo/{{todo.id}}'" class="btn btn-info">Edit</button>
+            <a href="add-todo" class="btn btn-success">Add new ToDo</a>
+        </td>
+   
+</tr>
+    {% endif %}
+    {% endfor %}
+        </tbody>
+</table>
+</div>
+
+

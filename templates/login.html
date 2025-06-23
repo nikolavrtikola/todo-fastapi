@@ -1,0 +1,43 @@
+{% include 'layout.html' %}
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Login
+        </div>
+        <div class="card-body">
+            {{ request.method }}
+         {% if msg %}
+         {% if msg == "You Logged Out Succesfuly" or msg=="User Sucessfuly created" %}
+         <div class="alert alert-success" role="alert">
+            {{msg}}
+         </div>
+      {% else %}
+         <div class="alert alert-danger" role="alert">
+            {{msg}}
+         </div>
+         {% endif %}
+         {% endif %}
+         
+    
+            <form method="post" action="/auth/login">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                    <!-- {% if msg %}
+                     <p style="color: red;">{{ msg }}</p>
+                    {% endif %} -->
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            <a href="register"> Register? </a>
+        </div>
+    </div>
+</div>
